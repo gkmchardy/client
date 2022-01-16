@@ -1,25 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route} from 'react-router-dom'
+import Header from './components/container/Header'
+import Footer from './components/container/Footer'
+import Sections from './components/pages/Sections'
+import Students from './components/pages/Students'
+import Student from './components/pages/Student'
+import Error from './components/pages/Error'
+import './App.css'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+function App(props) {
+    return (
+        <Router>
+          <Header />
+            <Routes>
+              <Route path='/' element={<Sections />} />
+              <Route path='/sections' element={<Sections />} />
+              <Route path='/students/:sectionID' element={<Students />} />
+              <Route path='/student/:studentID' element={<Student />} />
+              <Route path='*' element={<Error />} />
+            </Routes>
+          <Footer />
+        </Router>
+    )
 }
 
-export default App;
+export default App
